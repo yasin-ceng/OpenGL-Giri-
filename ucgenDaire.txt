@@ -1,0 +1,168 @@
+/*
+ * openGLTest.cpp
+ *
+ *  Created on: 17 May 2021
+ *      Author: Yasin
+ */
+
+
+//Pencere oluşturma
+#include<GL/glut.h>
+#include<math.h>
+
+int en = 300, boy = 300;
+
+void Ayarlar(void);
+void CizimFonksiyonu(void);
+void Cember(void);
+void Ucgen(void);
+void GorunumAyarlari(int en, int boy);
+
+int main(int argc, char **argv){
+
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+
+	glutInitWindowPosition(100,100);
+	glutInitWindowSize(300,300);
+
+	glutCreateWindow("Ilk OpenGL Programim");
+
+	Ayarlar();
+	glutReshapeFunc(GorunumAyari);
+
+	glutDisplayFunc(CizimFonksiyonu); //pencere görüntüleme
+	glutMainLoop(); //akışkanlık için döngü
+
+	return 0;
+}
+
+void Ayarlar(void){
+
+	glClearColor(0,1,1,1); //arkaplan Rengi
+	glShadeModel(GL_FLAT); //tek renk hakim
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+}
+
+void Cember(void){
+
+	//int der = 0;
+	//float rad = 0;
+	//float pi =3.14;
+
+	//Ölçekleme için glScalef() fonks. kullanılır
+	//glScalef(0.5, 2.0, 0.0);
+
+
+	glColor3f(0.0,0.0,1.0);//RGB Mavi Renk Kodu
+	glLineWidth(1.0); //kalınlık değeri
+
+
+	//Öteleme
+	//glTranslatef(-0.5, 0.5, 0.5);
+
+	//döndürme
+	glRotatef(60, 0.0, 1.0, 0.0);
+
+
+	//glBegin(GL_POLYGON); //GL_LINES, GL_TRIANGLES
+	glBegin(GL_QUADS);
+	/*
+	for(der=0; der<360; der++){
+		rad = 2* pi *der / 360;
+		glVertex2f(cos(rad)*0.5, sin(rad)*0.5);
+
+	}*/
+
+		glVertex3f(-0.8, 0.6, 0.2);
+		glVertex3f(0.8,  0.6, 0.2);
+		glVertex3f(0.8, -0.6, 0.2);
+		glVertex3f(0.8,  0.6, 0.2);
+	glEnd();
+	glBegin(GL_QUADS);
+		glVertex3f(-0.8, 0.6, 0.2);
+		glVertex3f(0.8,  0.6, 0.2);
+		glVertex3f(0.8, -0.6, 0.2);
+		glVertex3f(0.8,  0.6, 0.2);
+	glEnd(); //çizimi bitir
+
+	glBegin(GL_QUADS);
+		glVertex3f(-0.8, 0.6, 0.2);
+		glVertex3f(0.8,  0.6, 0.2);
+		glVertex3f(0.8, -0.6, 0.2);
+		glVertex3f(0.8,  0.6, 0.2);
+	glEnd(); //çizimi bitir
+
+	glBegin(GL_QUADS);
+		glVertex3f(-0.8, 0.6, 0.2);
+		glVertex3f(0.8,  0.6, 0.2);
+		glVertex3f(0.8, -0.6, 0.2);
+		glVertex3f(0.8,  0.6, 0.2);
+	glEnd(); //çizimi bitir
+
+	glBegin(GL_QUADS);
+		glVertex3f(-0.8, 0.6, 0.2);
+		glVertex3f(0.8,  0.6, 0.2);
+		glVertex3f(0.8, -0.6, 0.2);
+		glVertex3f(0.8,  0.6, 0.2);
+	glEnd(); //çizimi bitir
+
+	glBegin(GL_QUADS);
+		glVertex3f(-0.8, 0.6, 0.2);
+		glVertex3f(0.8,  0.6, 0.2);
+		glVertex3f(0.8, -0.6, 0.2);
+		glVertex3f(0.8,  0.6, 0.2);
+	glEnd(); //çizimi bitir
+
+}
+
+void Koordinat(){
+
+	glColor3f(1.0, 0.0, 0.0);
+	glLoadIdentity();
+
+
+	glBegin(GL_LINES);
+
+	glVertex2f(0.0, -1.0);
+	glVertex2f(0.0, 1.0);
+	glVertex2f(-1.0, 0.0);
+	glVertex2f(1.0, 0.0);
+	glEnd();
+
+
+}
+
+void Ucgen(){
+
+	glColor3f(0.0, 1.0, 0.0);
+
+
+
+	glLoadIdentity();
+
+	glRotatef(45, 0.0, 0.0, 1.0);
+
+	glBegin(GL_TRIANGLES);
+	glVertex2f(0.0, 0.0);
+	glVertex2f(0.0, 1.0);
+	glVertex2f(1.0, 0.0);
+	glEnd();
+
+}
+
+void CizimFonksiyonu(void) {
+
+
+	glClear(GL_COLOR_BUFFER_BIT);  //glClearColor()'ın yaptığı işi silmek için
+
+	Cember();
+	Koordinat();
+	Ucgen();
+
+	glFlush(); //tek arabellekte şeklin ekranda görünmesi için
+
+
+}
+
+
